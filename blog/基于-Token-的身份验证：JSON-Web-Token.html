@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>基于 Token 的身份验证：JSON Web Token | Lou&#39;Home</title>
+    <meta name="generator" content="VuePress 1.5.0">
+    <link rel="icon" href="/logo.ico">
+    <link rel="manifest" href="/manifest.json">
+    <link rel="apple-touch-icon" href="/logo.png">
+    <meta name="description" content="Keep track of your life！">
+    <link rel="preload" href="/assets/css/0.styles.b61369ba.css" as="style"><link rel="preload" href="/assets/js/app.a5b31fbb.js" as="script"><link rel="preload" href="/assets/js/3.9af23e16.js" as="script"><link rel="preload" href="/assets/js/1.bfee3624.js" as="script"><link rel="preload" href="/assets/js/43.2e042c77.js" as="script"><link rel="prefetch" href="/assets/js/10.9a25549d.js"><link rel="prefetch" href="/assets/js/11.0cf159a7.js"><link rel="prefetch" href="/assets/js/12.4a00d287.js"><link rel="prefetch" href="/assets/js/13.2ba89b90.js"><link rel="prefetch" href="/assets/js/14.7c5c8821.js"><link rel="prefetch" href="/assets/js/15.c4b26850.js"><link rel="prefetch" href="/assets/js/16.4a39f39e.js"><link rel="prefetch" href="/assets/js/17.cb79f53d.js"><link rel="prefetch" href="/assets/js/18.7e43aabd.js"><link rel="prefetch" href="/assets/js/19.57153f72.js"><link rel="prefetch" href="/assets/js/20.863f7bec.js"><link rel="prefetch" href="/assets/js/21.5cea7004.js"><link rel="prefetch" href="/assets/js/22.c3d988b5.js"><link rel="prefetch" href="/assets/js/23.08efe1d9.js"><link rel="prefetch" href="/assets/js/24.c36b914c.js"><link rel="prefetch" href="/assets/js/25.bd4cba7c.js"><link rel="prefetch" href="/assets/js/26.53021dfb.js"><link rel="prefetch" href="/assets/js/27.9b069ef9.js"><link rel="prefetch" href="/assets/js/28.c2afba32.js"><link rel="prefetch" href="/assets/js/29.981a0c4f.js"><link rel="prefetch" href="/assets/js/30.46cb4b89.js"><link rel="prefetch" href="/assets/js/31.dfde7949.js"><link rel="prefetch" href="/assets/js/32.f3209a9f.js"><link rel="prefetch" href="/assets/js/33.e9bccb51.js"><link rel="prefetch" href="/assets/js/34.135c7c1f.js"><link rel="prefetch" href="/assets/js/35.a5a9a5e6.js"><link rel="prefetch" href="/assets/js/36.e50117d5.js"><link rel="prefetch" href="/assets/js/37.27a96eae.js"><link rel="prefetch" href="/assets/js/38.c9d57035.js"><link rel="prefetch" href="/assets/js/39.84190e2e.js"><link rel="prefetch" href="/assets/js/4.5921dfe2.js"><link rel="prefetch" href="/assets/js/40.18e66c2d.js"><link rel="prefetch" href="/assets/js/41.cadacc4c.js"><link rel="prefetch" href="/assets/js/42.0180e782.js"><link rel="prefetch" href="/assets/js/44.df08dc20.js"><link rel="prefetch" href="/assets/js/45.a17d56df.js"><link rel="prefetch" href="/assets/js/46.b71cbf08.js"><link rel="prefetch" href="/assets/js/47.75f265ff.js"><link rel="prefetch" href="/assets/js/48.f16ddd2f.js"><link rel="prefetch" href="/assets/js/5.4cf651d5.js"><link rel="prefetch" href="/assets/js/6.c524588a.js"><link rel="prefetch" href="/assets/js/7.51d6bc29.js"><link rel="prefetch" href="/assets/js/8.e9ab6950.js"><link rel="prefetch" href="/assets/js/9.7954cbdc.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.b61369ba.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container" data-v-19557b78><div data-v-19557b78><div id="loader-wrapper" class="loading-wrapper" data-v-d48f4d20 data-v-19557b78 data-v-19557b78><div class="loader-main" data-v-d48f4d20><div data-v-d48f4d20></div><div data-v-d48f4d20></div><div data-v-d48f4d20></div><div data-v-d48f4d20></div></div> <!----> <!----></div> <div class="password-shadow password-wrapper-out" style="display:none;" data-v-64685f0e data-v-19557b78 data-v-19557b78><h3 class="title" style="display:none;" data-v-64685f0e data-v-64685f0e>Lou'Home</h3> <!----> <label id="box" class="inputBox" style="display:none;" data-v-64685f0e data-v-64685f0e><input type="password" value="" data-v-64685f0e> <span data-v-64685f0e>Konck! Knock!</span> <button data-v-64685f0e>OK</button></label> <div class="footer" style="display:none;" data-v-64685f0e data-v-64685f0e><span data-v-64685f0e><i class="iconfont reco-theme" data-v-64685f0e></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-64685f0e>vuePress-theme-reco</a></span> <span data-v-64685f0e><i class="iconfont reco-copyright" data-v-64685f0e></i> <a data-v-64685f0e><span data-v-64685f0e>Lou'Home</span>
+            
+          <!---->
+          2020
+        </a></span></div></div> <div class="hide" data-v-19557b78><header class="navbar" data-v-19557b78><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"><img src="/logo.ico" alt="Lou'Home" class="logo"> <span class="site-name">Lou'Home</span></a> <div class="links"><div class="color-picker"><a class="color-button"><i class="iconfont reco-color"></i></a> <div class="color-picker-menu" style="display:none;"><div class="mode-options"><h4 class="title">Choose mode</h4> <ul class="color-mode-options"><li class="dark">dark</li><li class="auto active">auto</li><li class="light">light</li></ul></div></div></div> <div class="search-box"><i class="iconfont reco-search"></i> <input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link"><i class="iconfont undefined"></i>
+  首页
+</a></div><div class="nav-item"><a href="/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont undefined"></i>
+      文章
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/" class="nav-link router-link-active"><i class="iconfont undefined"></i>
+  blog
+</a></li><li class="dropdown-item"><!----> <a href="/algorithm/" class="nav-link"><i class="iconfont undefined"></i>
+  算法
+</a></li></ul></div></div><div class="nav-item"><a href="https://github.com/Lou-Yoke" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  GitHub
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav></div></header> <div class="sidebar-mask" data-v-19557b78></div> <aside class="sidebar" data-v-19557b78><div class="personal-info-wrapper" data-v-b038cec6><img src="/logo.ico" alt="author-avatar" class="personal-img" data-v-b038cec6> <h3 class="name" data-v-b038cec6>
+    Lou'Home
+  </h3> <div class="num" data-v-b038cec6><div data-v-b038cec6><h3 data-v-b038cec6>35</h3> <h6 data-v-b038cec6>Article</h6></div> <div data-v-b038cec6><h3 data-v-b038cec6>46</h3> <h6 data-v-b038cec6>Tag</h6></div></div> <hr data-v-b038cec6></div> <nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link"><i class="iconfont undefined"></i>
+  首页
+</a></div><div class="nav-item"><a href="/timeline/" class="nav-link"><i class="iconfont reco-date"></i>
+  TimeLine
+</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title"><i class="iconfont undefined"></i>
+      文章
+    </span> <span class="arrow right"></span></a> <ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----> <a href="/blog/" class="nav-link router-link-active"><i class="iconfont undefined"></i>
+  blog
+</a></li><li class="dropdown-item"><!----> <a href="/algorithm/" class="nav-link"><i class="iconfont undefined"></i>
+  算法
+</a></li></ul></div></div><div class="nav-item"><a href="https://github.com/Lou-Yoke" target="_blank" rel="noopener noreferrer" class="nav-link external"><i class="iconfont undefined"></i>
+  GitHub
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>基于 Token 的身份验证：JSON Web Token</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/blog/%E5%9F%BA%E4%BA%8E-Token-%E7%9A%84%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%EF%BC%9AJSON-Web-Token.html#传统身份验证的方法" class="sidebar-link">传统身份验证的方法</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/blog/%E5%9F%BA%E4%BA%8E-Token-%E7%9A%84%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%EF%BC%9AJSON-Web-Token.html#基于-token-的身份验证方法" class="sidebar-link">基于 Token 的身份验证方法</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/blog/%E5%9F%BA%E4%BA%8E-Token-%E7%9A%84%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%EF%BC%9AJSON-Web-Token.html#jwt" class="sidebar-link">JWT</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/blog/%E5%9F%BA%E4%BA%8E-Token-%E7%9A%84%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%EF%BC%9AJSON-Web-Token.html#header" class="sidebar-link">Header</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/blog/%E5%9F%BA%E4%BA%8E-Token-%E7%9A%84%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%EF%BC%9AJSON-Web-Token.html#payload" class="sidebar-link">Payload</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/blog/%E5%9F%BA%E4%BA%8E-Token-%E7%9A%84%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%EF%BC%9AJSON-Web-Token.html#signature" class="sidebar-link">Signature</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/blog/%E5%9F%BA%E4%BA%8E-Token-%E7%9A%84%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%EF%BC%9AJSON-Web-Token.html#签发与验证-jwt" class="sidebar-link">签发与验证 JWT</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/blog/%E5%9F%BA%E4%BA%8E-Token-%E7%9A%84%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%EF%BC%9AJSON-Web-Token.html#签发-jwt" class="sidebar-link">签发 JWT</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/blog/%E5%9F%BA%E4%BA%8E-Token-%E7%9A%84%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%EF%BC%9AJSON-Web-Token.html#验证-jwt" class="sidebar-link">验证 JWT</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/blog/%E5%9F%BA%E4%BA%8E-Token-%E7%9A%84%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%EF%BC%9AJSON-Web-Token.html#rs256-算法" class="sidebar-link">RS256 算法</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/blog/%E5%9F%BA%E4%BA%8E-Token-%E7%9A%84%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%EF%BC%9AJSON-Web-Token.html#签发-jwt（rs256-算法）" class="sidebar-link">签发 JWT（RS256 算法）</a><ul class="sidebar-sub-headers"></ul></li><li><a href="/blog/%E5%9F%BA%E4%BA%8E-Token-%E7%9A%84%E8%BA%AB%E4%BB%BD%E9%AA%8C%E8%AF%81%EF%BC%9AJSON-Web-Token.html#验证-jwt（rs256-算法）" class="sidebar-link">验证 JWT（RS256 算法）</a><ul class="sidebar-sub-headers"></ul></li></ul></section></li></ul> </aside> <div class="password-shadow password-wrapper-in" style="display:none;" data-v-64685f0e data-v-19557b78><h3 class="title" style="display:none;" data-v-64685f0e data-v-64685f0e>基于 Token 的身份验证：JSON Web Token</h3> <!----> <label id="box" class="inputBox" style="display:none;" data-v-64685f0e data-v-64685f0e><input type="password" value="" data-v-64685f0e> <span data-v-64685f0e>Konck! Knock!</span> <button data-v-64685f0e>OK</button></label> <div class="footer" style="display:none;" data-v-64685f0e data-v-64685f0e><span data-v-64685f0e><i class="iconfont reco-theme" data-v-64685f0e></i> <a target="blank" href="https://vuepress-theme-reco.recoluan.com" data-v-64685f0e>vuePress-theme-reco</a></span> <span data-v-64685f0e><i class="iconfont reco-copyright" data-v-64685f0e></i> <a data-v-64685f0e><span data-v-64685f0e>Lou'Home</span>
+            
+          <!---->
+          2020
+        </a></span></div></div> <div data-v-19557b78><main class="page"><div class="page-title" style="display:none;"><h1>基于 Token 的身份验证：JSON Web Token</h1> <hr> <div data-v-484a899e><i class="iconfont reco-account" data-v-484a899e><span data-v-484a899e>Lou'Home</span></i> <i class="iconfont reco-date" data-v-484a899e><span data-v-484a899e>2020-04-03 15:56:22</span></i> <!----> <i class="iconfont reco-tag tags" data-v-484a899e><span class="tag-item" data-v-484a899e>
+      token
+    </span><span class="tag-item" data-v-484a899e>
+      web
+    </span></i></div></div> <div class="theme-reco-content content__default" style="display:none;"><h1 id="基于-token-的身份验证：json-web-token"><a href="#基于-token-的身份验证：json-web-token" class="header-anchor">#</a> 基于 Token 的身份验证：JSON Web Token</h1> <p>最近了解下基于 Token 的身份验证，跟大伙分享下。很多大型网站也都在用，比如 Facebook，Twitter，Google+，Github
+等等，比起传统的身份验证方法，Token 扩展性更强，也更安全点，非常适合用在 Web 应用或者移动应用上。Token 的中文有人翻译成
+“令牌”，我觉得挺好，意思就是，你拿着这个令牌，才能过一些关卡。</p> <p>文章先介绍了一下传统身份验证与基于 JWT 身份验证的方法，再理解一下 JWT 的 Token 的组成部分（头部，数据，签名），最后我们会在一个
+Node.js 项目上实施签发与验证 JWT 的功能。练习的视频版本可以参考《<a href="https://ninghao.net/video/5020" target="_blank" rel="noopener noreferrer">JWT：JSON Web
+Token<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>》这个免费的课程，项目代码在
+<a href="https://github.com/ninghao/jwt-demo" target="_blank" rel="noopener noreferrer">Github<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> 上可以找到。</p> <p>宁皓网有一系列的基于 Token 身份验证的课程，比如在 <a href="https://ninghao.net/course/5037" target="_blank" rel="noopener noreferrer">Node.js 项目<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>里，或者
+<a href="https://ninghao.net/course/5440" target="_blank" rel="noopener noreferrer">WordPress
+网站上实现<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>这种身份验证的方法，我们还介绍了在<a href="https://ninghao.net/course/5509" target="_blank" rel="noopener noreferrer">小程序里面<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>使用了这种基于
+Token 的方法来验证小程序用户的身份。</p> <blockquote><p><a href="https://ninghao.net/signup" target="_blank" rel="noopener noreferrer">订阅宁皓网<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a>以后，就可以在线学习所有这些基于 Token
+验证身份的相关课程。当然，部分课程免费。</p></blockquote> <h2 id="传统身份验证的方法"><a href="#传统身份验证的方法" class="header-anchor">#</a> 传统身份验证的方法</h2> <p>HTTP
+是一种没有状态的协议，也就是它并不知道是谁是访问应用。这里我们把用户看成是客户端，客户端使用用户名还有密码通过了身份验证，不过下回这个客户端再发送请求时候，还得再验证一下。</p> <p>解决的方法就是，当用户请求登录的时候，如果没有问题，我们在服务端生成一条记录，这个记录里可以说明一下登录的用户是谁，然后把这条记录的 ID
+号发送给客户端，客户端收到以后把这个 ID 号存储在 Cookie 里，下次这个用户再向服务端发送请求的时候，可以带着这个 Cookie
+，这样服务端会验证一个这个 Cookie
+里的信息，看看能不能在服务端这里找到对应的记录，如果可以，说明用户已经通过了身份验证，就把用户请求的数据返回给客户端。</p> <p>上面说的就是 Session，我们需要在服务端存储为登录的用户生成的 Session ，这些 Session
+可能会存储在内存，磁盘，或者数据库里。我们可能需要在服务端定期的去清理过期的 Session 。</p> <h2 id="基于-token-的身份验证方法"><a href="#基于-token-的身份验证方法" class="header-anchor">#</a> 基于 Token 的身份验证方法</h2> <p>使用基于 Token 的身份验证方法，在服务端不需要存储用户的登录记录。大概的流程是这样的：</p> <p>1、客户端使用用户名跟密码请求登录<br>
+2、服务端收到请求，去验证用户名与密码<br>
+3、验证成功后，服务端会签发一个 Token，再把这个 Token 发送给客户端<br>
+4、客户端收到 Token 以后可以把它存储起来，比如放在 Cookie 里或者 Local Storage 里<br>
+5、客户端每次向服务端请求资源的时候需要带着服务端签发的 Token<br>
+6、服务端收到请求，然后去验证客户端请求里面带着的 Token，如果验证成功，就向客户端返回请求的数据</p> <h2 id="jwt"><a href="#jwt" class="header-anchor">#</a> JWT</h2> <p>实施 Token 验证的方法挺多的，还有一些标准方法，比如 JWT，读作：jot ，表示：JSON Web Tokens 。JWT 标准的 Token
+有三个部分：</p> <ul><li><p>header（头部）</p></li> <li><p>payload（数据）</p></li> <li><p>signature（签名）<br>
+中间用点分隔开，并且都会使用 Base64 编码，所以真正的 Token 看起来像这样：</p> <p>eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJuaW5naGFvLm5ldCIsImV4cCI6IjE0Mzg5NTU0NDUiLCJuYW1lIjoid2FuZ2hhbyIsImFkbWluIjp0cnVlfQ.SwyHTEx_RQppr97g4J5lKXtabJecpejuef8AqKYMAJc</p></li></ul> <h2 id="header"><a href="#header" class="header-anchor">#</a> Header</h2> <p>每个 JWT token 里面都有一个 header，也就是头部数据。里面包含了使用的算法，这个 JWT
+是不是带签名的或者加密的。主要就是说明一下怎么处理这个 JWT token 。</p> <p>头部里包含的东西可能会根据 JWT 的类型有所变化，比如一个加密的 JWT 里面要包含使用的加密的算法。唯一在头部里面要包含的是 alg
+这个属性，如果是加密的 JWT，这个属性的值就是使用的签名或者解密用的算法。如果是未加密的 JWT，这个属性的值要设置成 none。</p> <p>示例：<br>
+{<br>
+&quot;alg&quot;: &quot;HS256&quot;<br>
+}</p> <p>意思是这个 JWT 用的算法是 HS256。上面的内容得用 base64url 的形式编码一下，所以就变成这样：</p> <div class="language- extra-class"><pre><code>eyJhbGciOiJIUzI1NiJ9  
+</code></pre></div><h2 id="payload"><a href="#payload" class="header-anchor">#</a> Payload</h2> <p>Payload 里面是 Token 的具体内容，这些内容里面有一些是标准字段，你也可以添加其它需要的内容。下面是标准字段：</p> <ul><li><p>iss：Issuer，发行者</p></li> <li><p>sub：Subject，主题</p></li> <li><p>aud：Audience，观众</p></li> <li><p>exp：Expiration time，过期时间</p></li> <li><p>nbf：Not before</p></li> <li><p>iat：Issued at，发行时间</p></li> <li><p>jti：JWT ID<br>
+比如下面这个 Payload ，用到了 iss 发行人，还有 exp 过期时间这两个标准字段。另外还有两个自定义的字段，一个是 name ，还有一个是
+admin 。</p> <div class="language- extra-class"><pre><code>{  
+</code></pre></div><p>&quot;iss&quot;: &quot;ninghao.net&quot;,<br>
+&quot;exp&quot;: &quot;1438955445&quot;,<br>
+&quot;name&quot;: &quot;wanghao&quot;,<br>
+&quot;admin&quot;: true<br>
+}<br>
+使用 base64url 编码以后就变成了这个样子：<br>
+eyJpc3MiOiJuaW5naGFvLm5ldCIsImV4cCI6IjE0Mzg5NTU0NDUiLCJuYW1lIjoid2FuZ2hhbyIsImFkbWluIjp0cnVlfQ</p></li></ul> <h2 id="signature"><a href="#signature" class="header-anchor">#</a> Signature</h2> <p>JWT 的最后一部分是 Signature ，这部分内容有三个部分，先是用 Base64 编码的 header.payload
+，再用加密算法加密一下，加密的时候要放进去一个 Secret ，这个相当于是一个密码，这个密码秘密地存储在服务端。</p> <ul><li><p>header</p></li> <li><p>payload</p></li> <li><p>secret</p> <div class="language- extra-class"><pre><code>const encodedString = base64UrlEncode(header) + &quot;.&quot; + base64UrlEncode  
+</code></pre></div><p>(payload);</p></li></ul> <p>HMACSHA256(encodedString, ‘secret’);<br>
+处理完成以后看起来像这样：</p> <div class="language- extra-class"><pre><code>SwyHTEx_RQppr97g4J5lKXtabJecpejuef8AqKYMAJc  
+</code></pre></div><p>最后这个在服务端生成并且要发送给客户端的 Token 看起来像这样：</p> <div class="language- extra-class"><pre><code>eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJuaW5naGFvLm5ldCIsImV4cCI6IjE0Mzg5NTU0NDUiLCJuYW1lIjoid2FuZ2hhbyIsImFkbWluIjp0cnVlfQ.SwyHTEx_RQppr97g4J5lKXtabJecpejuef8AqKYMAJc  
+</code></pre></div><p>客户端收到这个 Token 以后把它存储下来，下回向服务端发送请求的时候就带着这个 Token 。服务端收到这个 Token
+，然后进行验证，通过以后就会返回给客户端想要的资源。</p> <h2 id="签发与验证-jwt"><a href="#签发与验证-jwt" class="header-anchor">#</a> 签发与验证 JWT</h2> <p>在应用里实施使用基于 JWT 这种 Token 的身份验证方法，你可以先去找一个签发与验证 JWT
+的功能包。无论你的后端应用使用的是什么样的程序语言，系统，或者框架，你应该都可以找到提供类似功能的包。</p> <p>下面我们在一个 Node.js 项目里，用最简单的方式来演示一下签发还有验证 JWT 的方法。练习有个视频版本，你可以参考《 <a href="https://ninghao.net/course/5018" target="_blank" rel="noopener noreferrer">JWT：JSON Web
+Token<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> 》这个免费的视频课程。</p> <p>项目代码：<a href="https://github.com/ninghao/jwt-demo" target="_blank" rel="noopener noreferrer">https://github.com/ninghao/jwt-demo<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></p> <p>准备项目<br>
+准备一个简单的 Node.js 项目：</p> <div class="language- extra-class"><pre><code>cd ~/desktop  
+mkdir jwt-demo  
+cd jwt-demo  
+npm init -y  
+</code></pre></div><p>安装签发与验证 JWT 的功能包，我用的叫 jsonwebtoken，在项目里安装一下这个包：</p> <div class="language- extra-class"><pre><code>npm install jsonwebtoken --save  
+</code></pre></div><h2 id="签发-jwt"><a href="#签发-jwt" class="header-anchor">#</a> 签发 JWT</h2> <p>在项目里随便添加一个 .js 文件，比如 index.js，在文件里添加下面这些代码：</p> <div class="language- extra-class"><pre><code>const jwt = require('jsonwebtoken')  
+  
+// Token 数据  
+const payload = {  
+  name: 'wanghao',  
+  admin: true  
+}  
+  
+// 密钥  
+const secret = 'ILOVENINGHAO'  
+  
+// 签发 Token  
+const token = jwt.sign(payload, secret, { expiresIn: '1day' })  
+  
+// 输出签发的 Token  
+console.log(token)  
+</code></pre></div><p>非常简单，就是用了刚刚为项目安装的 jsonwebtoken 里面提供的 jwt.sign 功能，去签发一个 token。这个 sign 方法需要三个参数：</p> <p>1、 playload：签发的 token 里面要包含的一些数据。<br>
+2、 secret：签发 token 用的密钥，在验证 token 的时候同样需要用到这个密钥。<br>
+3、 options：一些其它的选项。<br>
+在命令行下面，用 node 命令，执行一下项目里的 index.js 这个文件（node index.js），会输出应用签发的 token：<br>
+···java<br>
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoid2FuZ2hhbyIsImFkbWluIjp0cnVlLCJpYXQiOjE1MjkwMzM5MDYsImV4cCI6MTUyOTEyMDMwNn0.DctA2QlUCrM6wLWkIO78wBVN0NLpjoIq4T5B_2WJ-
+PU</p> <div class="language- extra-class"><pre><code>上面的 Token 内容并没有加密，所以如果用一些 JWT 解码功能，可以看到 Token 里面包含的内容，内容由三个部分组成，像这样：  
+```java  
+// header  
+{  
+  &quot;alg&quot;: &quot;HS256&quot;,   
+  &quot;typ&quot;: &quot;JWT&quot;  
+}  
+  
+// payload  
+{  
+  &quot;admin&quot;: true,   
+  &quot;iat&quot;: 1529033906,   
+  &quot;name&quot;: &quot;wanghao&quot;,   
+  &quot;exp&quot;: 1529120306  
+}  
+  
+// signature  
+DctA2QlUCrM6wLWkIO78wBVN0NLpjoIq4T5B_2WJ-PU  
+</code></pre></div><p>假设用户通过了某种身份验证，你就可以使用上面的签发 Token 的功能为用户签发一个 Token。一般在客户端那里会把它保存在 Cookie 或
+LocalStorage 里面。</p> <p>用户下次向我们的应用请求受保护的资源的时候，可以在请求里带着我们给它签发的这个 Token，后端应用收到请求，检查签名，如果验证通过确定这个 Token
+是我们自己签发的，那就可以为用户响应回他需要的资源。</p> <h2 id="验证-jwt"><a href="#验证-jwt" class="header-anchor">#</a> 验证 JWT</h2> <p>验证 JWT 的用效性，确定一下用户的 JWT 是我们自己签发的，首先要得到用户的这个 JWT Token，然后用
+jwt.verify这个方法去做一下验证。这个方法是 Node.js 的 jsonwebtoken
+这个包里提供的，在其它的应用框架或者系统里，你可能会找到类似的方法来验证 JWT。</p> <p>打开项目的 index.js 文件，里面添加几行代码：</p> <div class="language- extra-class"><pre><code>// 验证 Token  
+jwt.verify(token, 'bad secret', (error, decoded) =&gt; {  
+  if (error) {  
+    console.log(error.message)  
+    return  
+  }  
+  console.log(decoded)  
+})  
+</code></pre></div><p>把要验证的 Token 数据，还有签发这个 Token 的时候用的那个密钥告诉 verify 这个方法，在一个回调里面有两个参数，error
+表示错误，decoded 是解码之后的 Token 数据。</p> <p>执行：</p> <div class="language- extra-class"><pre><code>node ~/desktop/jwt-demo/index.js  
+</code></pre></div><p>输出：</p> <div class="language- extra-class"><pre><code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoid2FuZ2hhbyIsImFkbWluIjp0cnVlLCJpYXQiOjE1MjkwMzQ3MzMsImV4cCI6MTUyOTEyMTEzM30.swXojmu7VimFu3BoIgAxxpmm2J05dvD0HT3yu10vuqU  
+  
+invalid signature  
+</code></pre></div><p>注意输出了一个 invalid signature ，表示 Token 里的签名不对，这是因为我们组长 verify 方法提供的密钥并不是签发 Token
+的时候用的那个密钥。这样修改一下：</p> <div class="language- extra-class"><pre><code>jwt.verify(token, secret, (error, decoded) =&gt; { ...  
+</code></pre></div><p>再次运行，会输出类似的数据：</p> <div class="language- extra-class"><pre><code>eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoid2FuZ2hhbyIsImFkbWluIjp0cnVlLCJpYXQiOjE1MjkwMzUzODYsImV4cCI6MTUyOTEyMTc4Nn0.mkNrt4TfcfmP22xd3C_GQn8qnUmlB39dKT9SpIBTBGI  
+  
+{ name: 'wanghao', admin: true, iat: 1529035386, exp: 1529121786 }  
+</code></pre></div><h2 id="rs256-算法"><a href="#rs256-算法" class="header-anchor">#</a> RS256 算法</h2> <p>默认签发还有验证 Token 的时候用的是 HS256 算法，这种算法需要一个密钥（密码）。我们还可以使用 RS256 算法签发与验证
+JWT。这种方法可以让我们分离开签发与验证，签发时需要用一个密钥，验证时使用公钥，也就是有公钥的地方只能做验证，但不能签发 JWT。</p> <p>在项目下面创建一个新的目录，里面可以存储即将生成的密钥与公钥文件。</p> <div class="language- extra-class"><pre><code>cd ~/desktop/jwt-demo  
+mkdir config  
+cd config  
+</code></pre></div><p>密钥</p> <p>先生成一个密钥文件：</p> <div class="language- extra-class"><pre><code>ssh-keygen -t rsa -b 2048 -f private.key  
+</code></pre></div><p>公钥</p> <p>基于上面生成的密钥，再去创建一个对应的公钥：</p> <div class="language- extra-class"><pre><code>openssl rsa -in private.key -pubout -outform PEM -out public.key  
+</code></pre></div><h2 id="签发-jwt（rs256-算法）"><a href="#签发-jwt（rs256-算法）" class="header-anchor">#</a> 签发 JWT（RS256 算法）</h2> <p>用 RS256 算法签发 JWT 的时候，需要从文件系统上读取创建的密钥文件里的内容。</p> <div class="language- extra-class"><pre><code>const fs = require('fs')  
+  
+// 获取签发 JWT 时需要用的密钥  
+const privateKey = fs.readFileSync('./config/private.key')  
+签发仍然使用 jwt.sign 方法，只不过在选项参数里特别说明一下使用的算法是 RS256：  
+  
+// 签发 Token  
+const tokenRS256 = jwt.sign(payload, privateKey, { algorithm: 'RS256' })  
+  
+// 输出签发的 Token  
+console.log('RS256 算法：', tokenRS256)  
+</code></pre></div><h2 id="验证-jwt（rs256-算法）"><a href="#验证-jwt（rs256-算法）" class="header-anchor">#</a> 验证 JWT（RS256 算法）</h2> <p>验证使用 RS256 算法签发的 JWT，需要在文件系统上读取公钥文件里的内容。然后用 jwt 的 verify 方法去做验证。</p> <div class="language- extra-class"><pre><code>// 获取验证 JWT 时需要用的公钥  
+const publicKey = fs.readFileSync('./config/public.key')  
+  
+// 验证 Token  
+jwt.verify(tokenRS256, publicKey, (error, decoded) =&gt; {  
+  if (error) {  
+    console.log(error.message)  
+    return  
+  }  
+  console.log(decoded)  
+})  
+</code></pre></div></div> <footer class="page-edit" style="display:none;"><!----> <!----></footer> <!----> <!----></main> <!----></div></div></div></div><div class="global-ui"><div class="back-to-ceiling" style="right:1rem;bottom:6rem;width:2.5rem;height:2.5rem;border-radius:.25rem;line-height:2.5rem;display:none;" data-v-44bd5a18 data-v-44bd5a18><svg t="1574745035067" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="5404" class="icon" data-v-44bd5a18><path d="M526.60727968 10.90185116a27.675 27.675 0 0 0-29.21455937 0c-131.36607665 82.28402758-218.69155461 228.01873535-218.69155402 394.07834331a462.20625001 462.20625001 0 0 0 5.36959153 69.94390903c1.00431239 6.55289093-0.34802892 13.13561351-3.76865779 18.80351572-32.63518765 54.11355614-51.75690182 118.55860487-51.7569018 187.94566865a371.06718723 371.06718723 0 0 0 11.50484808 91.98906777c6.53300375 25.50556257 41.68394495 28.14064038 52.69160883 4.22606766 17.37162448-37.73630017 42.14135425-72.50938081 72.80769204-103.21549295 2.18761121 3.04276886 4.15646224 6.24463696 6.40373557 9.22774369a1871.4375 1871.4375 0 0 0 140.04691725 5.34970492 1866.36093723 1866.36093723 0 0 0 140.04691723-5.34970492c2.24727335-2.98310674 4.21612437-6.18497483 6.3937923-9.2178004 30.66633723 30.70611158 55.4360664 65.4791928 72.80769147 103.21549355 11.00766384 23.91457269 46.15860503 21.27949489 52.69160879-4.22606768a371.15156223 371.15156223 0 0 0 11.514792-91.99901164c0-69.36717486-19.13165746-133.82216804-51.75690182-187.92578088-3.42062944-5.66790279-4.76302748-12.26056868-3.76865837-18.80351632a462.20625001 462.20625001 0 0 0 5.36959269-69.943909c-0.00994388-166.08943902-87.32547796-311.81420293-218.6915546-394.09823051zM605.93803103 357.87693858a93.93749974 93.93749974 0 1 1-187.89594924 6.1e-7 93.93749974 93.93749974 0 0 1 187.89594924-6.1e-7z" p-id="5405" data-v-44bd5a18></path><path d="M429.50777625 765.63860547C429.50777625 803.39355007 466.44236686 1000.39046097 512.00932183 1000.39046097c45.56695499 0 82.4922232-197.00623328 82.5015456-234.7518555 0-37.75494459-36.9345906-68.35043303-82.4922232-68.34111062-45.57627738-0.00932239-82.52019037 30.59548842-82.51086798 68.34111062z" p-id="5406" data-v-44bd5a18></path></svg></div></div></div>
+    <script src="/assets/js/app.a5b31fbb.js" defer></script><script src="/assets/js/3.9af23e16.js" defer></script><script src="/assets/js/1.bfee3624.js" defer></script><script src="/assets/js/43.2e042c77.js" defer></script>
+  </body>
+</html>
